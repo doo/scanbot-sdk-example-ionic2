@@ -10,6 +10,8 @@ import {ImageResultsRepository} from '../services/image-results.repository';
 import {AppRoutingModule} from '../app-routing.module';
 import {IonicStorageModule} from '@ionic/storage';
 
+import { APP_BASE_HREF } from '@angular/common';
+
 describe('HomePage', () => {
     let component: HomePage;
     let fixture: ComponentFixture<HomePage>;
@@ -24,6 +26,7 @@ describe('HomePage', () => {
             ],
             providers: [
                 { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+                { provide: APP_BASE_HREF, useValue: '/'},
                 DialogsService,
                 ScanbotSdkDemoService,
                 ImageResultsRepository
