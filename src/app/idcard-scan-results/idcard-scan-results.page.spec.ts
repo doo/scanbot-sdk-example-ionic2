@@ -19,6 +19,10 @@ describe('IdCardScanResultsPage', () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [
         IonicStorageModule.forRoot()
+      ],
+      providers: [
+        IonicStorageModule,
+        Storage
       ]
     })
     .compileComponents();
