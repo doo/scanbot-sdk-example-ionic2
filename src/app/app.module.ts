@@ -25,10 +25,10 @@ import { ImageResultsRepository } from './services/image-results.repository';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
     DialogsService,
     ScanbotSdkDemoService,
-    ImageResultsRepository,
+    ImageResultsRepository
   ],
   bootstrap: [AppComponent]
 })

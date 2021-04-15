@@ -2,6 +2,12 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { IdCardScanResultsPage } from './idcard-scan-results.page';
+import {RouteReuseStrategy} from '@angular/router';
+import {IonicRouteStrategy} from '@ionic/angular';
+import {DialogsService} from '../services/dialogs.service';
+import {ScanbotSdkDemoService} from '../services/scanbot-sdk-demo.service';
+import {ImageResultsRepository} from '../services/image-results.repository';
+import {IonicStorageModule, Storage} from '@ionic/storage';
 
 describe('IdCardScanResultsPage', () => {
   let component: IdCardScanResultsPage;
@@ -11,6 +17,9 @@ describe('IdCardScanResultsPage', () => {
     TestBed.configureTestingModule({
       declarations: [ IdCardScanResultsPage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      imports: [
+        IonicStorageModule.forRoot()
+      ]
     })
     .compileComponents();
   }));
