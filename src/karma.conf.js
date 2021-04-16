@@ -5,13 +5,19 @@ module.exports = function (config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
+    files: [
+      "../www/**/*.js",
+      "../www/**/*.js.map",
+    ],
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-cordova-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
-      require('@angular-devkit/build-angular/plugins/karma')
+      require('@angular-devkit/build-angular/plugins/karma'),
+      require('karma-webpack'),
+      require('karma-sourcemap-loader')
     ],
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
@@ -21,19 +27,24 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly', 'text-summary'],
       fixWebpackSourcePaths: true
     },
-    reporters: ['progress', 'kjhtml'],
+    preprocessors: { '**/*.js': ['sourcemap']},
+
+    reporters: ['progress', 'dots', 'kjhtml'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    // browsers: ['Cordova'],
-    browsers: ['Chrome'],
+    browsers: ['Cordova', 'Chrome'],
     singleRun: false,
 
-    // cordovaSettings: {
-    //   platforms: ['android'],
-    //   mode: 'emulate',
-    //   target: 'ZY227L6QBJ',
-    // }
+    cordovaSettings: {
+      hostip: '10.0.2.2',
+      platforms: ['android'],
+      mode: 'emulate',
+      target: 'BH900CRXGY', // Aare's Xperia XZ2
+      plugins: [
+        'org.apache.cordova.console'
+      ]
+    }
   });
 };
