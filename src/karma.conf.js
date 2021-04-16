@@ -26,13 +26,14 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Cordova'],
+    // browsers: ['Cordova'],
+    browsers: ['Chrome'],
     singleRun: false,
 
-    cordovaSettings: {
-      platforms: ['android'],
-      mode: 'emulate',
-      target: 'ZY227L6QBJ',
-    }
+    // cordovaSettings: {
+    //   platforms: ['android'],
+    //   mode: 'emulate',
+    //   target: 'ZY227L6QBJ',
+    // }
   });
 };

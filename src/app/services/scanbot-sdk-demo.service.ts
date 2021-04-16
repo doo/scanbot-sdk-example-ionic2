@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { File } from '@ionic-native/file/ngx';
 
@@ -11,6 +11,11 @@ import ScanbotSdk, {
 
 import { environment } from '../../environments/environment';
 import { DialogsService } from './dialogs.service';
+
+@Component({
+    selector: 'app-root',
+    templateUrl: '../app.component.html'
+  })
 
 @Injectable()
 export class ScanbotSdkDemoService {
