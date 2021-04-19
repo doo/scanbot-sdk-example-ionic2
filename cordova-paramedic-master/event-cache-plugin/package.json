@@ -1,0 +1,14 @@
+{
+  "name": "cordova-paramedic-event-cache",
+  "version": "0.5.0",
+  "license": "Apache 2.0",
+  "description": "Cordova Paramedic Event Cache Plugin",
+  "main": "paramedic.js",
+  "engines" : {
+      "node" : ">=0.11.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/apache/cordova-paramedic.git"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "cordova-paramedic-ci",
+  "version": "0.5.0",
+  "license": "Apache 2.0",
+  "description": "Cordova Paramedic Plugin is responsible for the test results reporting",
+  "main": "paramedic.js",
+  "engines" : {
+      "node" : ">=0.11.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/apache/cordova-paramedic.git"
+  }
+}

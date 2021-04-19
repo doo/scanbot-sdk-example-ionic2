@@ -1,0 +1,10 @@
+{
+	"name": "testable-plugin-tests-foo",
+	"version": "1.0.0",
+	"description": "Additional tests for testable plugin",
+	"scripts": {
+		"test": "echo \"Here could be additional tests.\""
+	},
+	"author": "",
+	"license": ""
+}

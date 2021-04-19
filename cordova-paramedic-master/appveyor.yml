@@ -1,0 +1,23 @@
+# appveyor file
+# http://www.appveyor.com/docs/appveyor-yml
+
+environment:
+  matrix:
+    - nodejs_version: "10"
+    - nodejs_version: "12"
+
+platform:
+  - x86
+  - x64
+
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - node --version
+  - npm install -g cordova
+  - npm install
+  - npm link
+
+build: off
+
+test_script:
+  - npm run test-appveyor

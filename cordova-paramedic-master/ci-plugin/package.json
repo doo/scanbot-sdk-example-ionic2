@@ -1,0 +1,14 @@
+{
+  "name": "cordova-paramedic-ci",
+  "version": "0.5.0",
+  "license": "Apache 2.0",
+  "description": "Tells Cordova tests that they are running in CI environment by introducing a global variable",
+  "main": "ci.js",
+  "engines" : {
+      "node" : ">=0.11.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/apache/cordova-paramedic.git"
+  }
+}

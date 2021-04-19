@@ -9,7 +9,10 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "test:android": "cordova-paramedic --verbose --platform android --plugin plugins/cordova-plugin-scanbot-sdk --target ZY227L6QBJ --useTunnel",
+    "test:browser": "cordova-paramedic --cleanUpAfterRun --verbose --platform browser --plugin plugins/cordova-plugin-scanbot-sdk",
+    "test:ios": "cordova-paramedic --cleanUpAfterRun --verbose --platform ios --plugin plugins/cordova-plugin-scanbot-sdk"
   },
   "private": true,
   "dependencies": {

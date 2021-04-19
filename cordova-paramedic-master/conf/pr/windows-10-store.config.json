@@ -1,0 +1,9 @@
+{
+    "platform": "windows@latest",
+    "action": "run",
+    "args": " -- --appx=uap --archs=x64",
+    "cleanUpAfterRun": true,
+    "logMins": 15,
+    "shouldUseSauce": true,
+    "verbose": true
+}

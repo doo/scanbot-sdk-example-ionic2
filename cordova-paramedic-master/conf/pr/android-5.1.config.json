@@ -1,0 +1,8 @@
+{
+    "platform": "android@latest",
+    "action": "run",
+    "cleanUpAfterRun": true,
+    "shouldUseSauce": true,
+    "saucePlatformVersion": "5.1",
+    "verbose": true
+}

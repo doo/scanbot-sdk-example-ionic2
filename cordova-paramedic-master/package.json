@@ -1,0 +1,70 @@
+{
+  "name": "cordova-paramedic",
+  "version": "1.0.0-dev",
+  "license": "Apache-2.0",
+  "description": "Use medic to test a cordova plugin locally",
+  "main": "paramedic.js",
+  "bin": {
+    "cordova-paramedic": "./main.js"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "repository": "github:apache/cordova-paramedic",
+  "bugs": "https://github.com/apache/cordova-paramedic/issues",
+  "scripts": {
+    "test": "npm run eslint & npm run test-local && npm run test-saucelabs",
+    "test-on-windows": "npm run eslint & npm run test-local-on-windows && npm run test-saucelabs-on-windows",
+    "eslint": "eslint lib",
+    "test-travis": "npm run eslint & npm run test-ios",
+    "test-appveyor": "npm run test-browser",
+    "test-local": "npm run test-browser && npm run test-android && npm run test-ios",
+    "test-local-on-windows": "npm run test-browser && npm run test-android",
+    "test-android": "node main.js --platform android --plugin ./spec/testable-plugin/",
+    "test-ios": "node main.js --platform ios --plugin ./spec/testable-plugin/ --verbose",
+    "test-windows": "node main.js --platform windows --plugin ./spec/testable-plugin/",
+    "test-browser": "node main.js --platform browser --plugin ./spec/testable-plugin/",
+    "test-saucelabs": "npm run test-saucelabs-browser && npm run test-saucelabs-ios && npm run test-saucelabs-android",
+    "test-saucelabs-on-windows": "npm run test-saucelabs-browser && npm run test-saucelabs-android",
+    "test-saucelabs-browser": "node main.js --config ./pr/browser-chrome --plugin ./spec/testable-plugin/ --shouldUseSauce",
+    "test-saucelabs-ios": "node main.js --config ./pr/ios-10.0 --plugin ./spec/testable-plugin/ --shouldUseSauce",
+    "test-saucelabs-android": "node main.js --config ./pr/android-7.0 --plugin ./spec/testable-plugin/ --shouldUseSauce"
+  },
+  "keywords": [
+    "cordova",
+    "paramedic",
+    "medic",
+    "test"
+  ],
+  "author": "Apache Software Foundation",
+  "dependencies": {
+    "cordova-common": "^3.1.0",
+    "execa": "^2.0.1",
+    "expect-telnet": "^1.0.0",
+    "jasmine": "^3.6.1",
+    "jasmine-reporters": "^2.3.2",
+    "jasmine-spec-reporter": "^4.2.1",
+    "localtunnel": "^1.9.1",
+    "minimist": "^1.2.5",
+    "q": "^1.5.1",
+    "randomstring": "^1.1.5",
+    "sauce-connect-launcher": "^1.3.2",
+    "saucelabs": "^1.2.0",
+    "shelljs": "^0.8.4",
+    "socket.io": "^2.3.0",
+    "tcp-port-used": "^1.0.1",
+    "tmp": "^0.1.0",
+    "tree-kill": "^1.2.2",
+    "unorm": "^1.6.0",
+    "wd": "^1.13.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-semistandard": "^13.0.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-standard": "^4.0.0"
+  }
+}
