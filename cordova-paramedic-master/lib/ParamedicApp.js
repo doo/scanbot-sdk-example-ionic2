@@ -86,6 +86,10 @@ class ParamedicApp {
             additionalPlugins.push(path.join(__dirname, '..', 'ci-plugin'));
         }
 
+        if (this.config.shouldUseAndroidx()) {
+            additionalPlugins.push('cordova-plugin-androidx');
+        }
+
         pluginsManager.installPlugins(additionalPlugins);
     }
 

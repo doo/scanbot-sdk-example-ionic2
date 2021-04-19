@@ -91,6 +91,8 @@ matrix:
       <<: *_android
     - env: PLATFORM=android-9.0
       <<: *_android
+    - env: PLATFORM=android-9.0-androidx
+      <<: *_android
     - env: PLATFORM=android-10.0
       <<: *_android
 

@@ -1,9 +1,10 @@
 {
-    "platform": "android@latest",
+    "platform": "android",
     "action": "run",
     "cleanUpAfterRun": true,
     "shouldUseSauce": true,
     "saucePlatformVersion": "9.0",
     "sauceDeviceName": "Android GoogleAPI Emulator",
-    "verbose": true
+    "verbose": true,
+    "shouldUseAndroidx": true
 }

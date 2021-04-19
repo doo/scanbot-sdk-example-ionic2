@@ -135,6 +135,14 @@ class ParamedicConfig {
         this._config.shouldUseSauce = sus;
     }
 
+    shouldUseAndroidx () {
+        return this._config.shouldUseAndroidx;
+    }
+
+    setshouldUseAndroidx (value) {
+        this._config.shouldUseAndroidx = value;
+    }
+
     getBuildName () {
         return this._config.buildName || this.getDefaultBuildName();
     }
@@ -309,7 +317,8 @@ ParamedicConfig.parseFromArguments = function (argv) {
         ci: argv.ci,
         target: argv.target,
         fileTransferServer: argv.fileTransferServer,
-        cli: argv.cli
+        cli: argv.cli,
+        shouldUseAndroidx: !!argv.shouldUseAndroidx || false
     });
 };
 
