@@ -423,21 +423,29 @@ class ParamedicRunner {
             return Q(cmd.join(' '));
         }
 
-        // For now we always trying to run test app on emulator
-        return (new ParamedicTargetChooser(this.tempFolder.name, this.config)).chooseTarget(
-            true, // useEmulator
-            this.config.getTarget() // preferredTarget
-        ).then(targetObj => {
-            this.targetObj = targetObj;
+        var target = new ParamedicTargetChooser(this.tempFolder.name, this.config).chooseTarget(true, this.config.getTarget())
 
-            return cmd
-                .concat(['--target', `"${this.targetObj.target}"`])
-                // CB-11472 In case of iOS provide additional '--emulator' flag, otherwise
-                // 'cordova run ios --target' would hang waiting for device with name
-                // as specified in 'target' in case if any device is physically connected
-                .concat(this.isIos ? ['--emulator'] : [])
-                .join(' ');
-        });
+        return cmd
+        .concat(['--target', `"${target.target}"`])
+        // CB-11472 In case of iOS provide additional '--emulator' flag, otherwise
+        // 'cordova run ios --target' would hang waiting for device with name
+        // as specified in 'target' in case if any device is physically connected
+        .concat(this.isIos ? ['--emulator'] : [])
+        .join(' ');
+
+        // // For now we always trying to run test app on emulator
+        // return (new ParamedicTargetChooser(this.tempFolder.name, this.config))
+        //     .chooseTarget(true, this.config.getTarget())
+        //     .then(targetObj => {
+        //         this.targetObj = targetObj;
+        //         return cmd
+        //             .concat(['--target', `"${this.targetObj.target}"`])
+        //             // CB-11472 In case of iOS provide additional '--emulator' flag, otherwise
+        //             // 'cordova run ios --target' would hang waiting for device with name
+        //             // as specified in 'target' in case if any device is physically connected
+        //             .concat(this.isIos ? ['--emulator'] : [])
+        //             .join(' ');
+        //    });
     }
 
     shouldWaitForTestResult () {
