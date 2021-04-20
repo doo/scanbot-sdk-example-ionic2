@@ -10,9 +10,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "test:android": "cordova-paramedic --cleanUpAfterRun --verbose --platform android --plugin cordova-plugin-scanbot-sdk --target ZY227L6QBJ --shouldUseAndroidx true",
-    "test:browser": "cordova-paramedic --cleanUpAfterRun --verbose --platform browser --plugin cordova-plugin-scanbot-sdk",
-    "test:ios": "cordova-paramedic --cleanUpAfterRun --verbose --platform ios --plugin cordova-plugin-scanbot-sdk"
+    "test:android": "cordova-paramedic --cleanUpAfterRun --verbose --platform android --plugin plugins/cordova-plugin-scanbot-sdk --target ZY227L6QBJ --shouldUseAndroidx true",
+    "test:browser": "cordova-paramedic --cleanUpAfterRun --verbose --platform browser --plugin plugins/cordova-plugin-scanbot-sdk",
+    "test:ios": "cordova-paramedic --cleanUpAfterRun --verbose --platform ios --plugin plugins/cordova-plugin-scanbot-sdk"
   },
   "private": true,
   "dependencies": {
@@ -60,8 +60,8 @@
     "@types/node": "~10.12.0",
     "codelyzer": "~4.5.0",
     "compare-func": "2.0.0",
-    "cordova-android": "9.0.0",
-    "cordova-ios": "6.2.0",
+    "cordova-android": "^9.0.0",
+    "cordova-ios": "^6.2.0",
     "cordova-plugin-scanbot-sdk": "git+https://github.com/doo/scanbot-sdk-cordova-plugin.git#hp/add-plugin-tests",
     "cordova-plugin-splashscreen": "^6.0.0",
     "jasmine-core": "~2.99.1",
