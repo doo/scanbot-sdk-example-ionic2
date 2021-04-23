@@ -26,6 +26,15 @@ import { IdCardScanResultsService } from '../services/idcard-scan-results.servic
 })
 export class HomePage {
 
+  public static Uint8ToStringViaReader(u8a) {
+    // @ts-ignore
+    return new Promise(resolve => {
+      const r = new FileReader();
+      r.onload = ev => { resolve(r.result); };
+      r.readAsBinaryString(new Blob([u8a], { type: "binary/octet-stream" }));
+    });
+  }
+
   constructor(private scanbotService: ScanbotSdkDemoService,
               private imageResultsRepository: ImageResultsRepository,
               private dialogsService: DialogsService,
@@ -33,7 +42,7 @@ export class HomePage {
               private router: Router,
               private imagePicker: ImagePicker) {
 
-    document.addEventListener('deviceready', function() {
+    document.addEventListener('deviceready', async function() {
       /*
        * Register a vanilla javascript callback, as setLicenseFailure registers a continuous callback
        * that does not adhere to the standards of promisified API.
@@ -47,6 +56,27 @@ export class HomePage {
         const feature = callback.licenseFeature;
         console.log('Feature ' + feature + ' is not available because license is ' + status);
       });
+
+
+      const promised = ScanbotSdk.promisify();
+      const blob_repository = "https://github.com/doo/scanbot-sdk-android-integration-tests/blob/";
+      const raw_repository = "https://raw.githubusercontent.com/doo/scanbot-sdk-android-integration-tests/";
+      const ratio_image = "a59bb0180755d73b1d9f0981aaeb9e23ee6a87ba/assets/docdetector/aspect_ratio.jpg";
+      const raw = "?raw=true";
+      const token = "?token=ACCIOL2BBBG4MVEK5STZZ6LARQPJU";
+
+      // const file = await fetch( blob_repository + ratio_image + raw);
+      // const buffer = await file.arrayBuffer();
+      // const string = await HomePage.Uint8ToStringViaReader(buffer);
+      //@ts-ignore
+      const saveResult = await promised.Test.saveFile({url: raw_repository + ratio_image + token});
+      console.log("save result", saveResult);
+
+      await scanbotService.ready();
+      const createResult = await promised.createPage({originalImageFileUri: saveResult.path});
+      console.log("create result", createResult);
+      const detectionResult = await promised.detectDocumentOnPage({page: createResult.page});
+      console.log("detection result", detectionResult);
     });
   }
 
