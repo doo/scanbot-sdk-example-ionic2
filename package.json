@@ -62,7 +62,7 @@
     "compare-func": "2.0.0",
     "cordova-android": "9.0.0",
     "cordova-ios": "6.2.0",
-    "cordova-plugin-scanbot-sdk": "file:../scanbot-sdk-cordova-plugin",
+    "cordova-plugin-scanbot-sdk": "file:..",
     "cordova-plugin-splashscreen": "^6.0.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
