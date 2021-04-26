@@ -59,20 +59,16 @@ export class HomePage {
 
 
       const promised = ScanbotSdk.promisify();
-      const blob_repository = "https://github.com/doo/scanbot-sdk-android-integration-tests/blob/";
       const raw_repository = "https://raw.githubusercontent.com/doo/scanbot-sdk-android-integration-tests/";
       const ratio_image = "a59bb0180755d73b1d9f0981aaeb9e23ee6a87ba/assets/docdetector/aspect_ratio.jpg";
-      const raw = "?raw=true";
       const token = "?token=ACCIOL2BBBG4MVEK5STZZ6LARQPJU";
 
-      // const file = await fetch( blob_repository + ratio_image + raw);
-      // const buffer = await file.arrayBuffer();
-      // const string = await HomePage.Uint8ToStringViaReader(buffer);
       //@ts-ignore
       const saveResult = await promised.Test.saveFile({url: raw_repository + ratio_image + token});
       console.log("save result", saveResult);
 
       await scanbotService.ready();
+
       const createResult = await promised.createPage({originalImageFileUri: saveResult.path});
       console.log("create result", createResult);
       const detectionResult = await promised.detectDocumentOnPage({page: createResult.page});
