@@ -56,23 +56,6 @@ export class HomePage {
         const feature = callback.licenseFeature;
         console.log('Feature ' + feature + ' is not available because license is ' + status);
       });
-
-
-      const promised = ScanbotSdk.promisify();
-      const raw_repository = "https://raw.githubusercontent.com/doo/scanbot-sdk-android-integration-tests/";
-      const ratio_image = "a59bb0180755d73b1d9f0981aaeb9e23ee6a87ba/assets/docdetector/aspect_ratio.jpg";
-      const token = "?token=ACCIOL2BBBG4MVEK5STZZ6LARQPJU";
-
-      //@ts-ignore
-      const saveResult = await promised.Test.saveFile({url: raw_repository + ratio_image + token});
-      console.log("save result", saveResult);
-
-      await scanbotService.ready();
-
-      const createResult = await promised.createPage({originalImageFileUri: saveResult.path});
-      console.log("create result", createResult);
-      const detectionResult = await promised.detectDocumentOnPage({page: createResult.page});
-      console.log("detection result", detectionResult);
     });
   }
 
