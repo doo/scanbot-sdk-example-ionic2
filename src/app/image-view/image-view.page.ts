@@ -33,6 +33,7 @@ export class ImageViewPage implements OnInit {
         'EDGE_HIGHLIGHT',
         'LOW_LIGHT_BINARIZATION',
         'LOW_LIGHT_BINARIZATION_2',
+        'SENSITIVE_BINARIZATION'
     ];
 
     constructor(private scanbotService: ScanbotSdkDemoService,
@@ -107,7 +108,8 @@ export class ImageViewPage implements OnInit {
 
         const actionSheet = await this.actionSheetController.create({
             header: 'Select an Image Filter',
-            buttons: buttons
+            buttons: buttons,
+            cssClass: "image-filters-action-sheet"
         });
         await actionSheet.present();
     }

@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-scanbot-example-ui" version="0.0.1"
+    xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>Scanbot Example UI Cordova Plugin</name>
+    <js-module name="ScanbotExampleUi" src="www/ScanbotExampleUI.js">
+        <clobbers target="ScanbotExampleUi" />
+    </js-module>
+    <platform name="android">
+
+        <framework src="com.opensooq.supernova:gligar:1.1.0" />
+
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="ScanbotExampleUi">
+                <param name="android-package" value="io.scanbot.cordova.exampleui.ScanbotExampleUiPlugin" />
+            </feature>
+        </config-file>
+        <source-file src="src/android/ScanbotExampleUiPlugin.java" target-dir="src/io/scanbot/cordova/exampleui" />
+    </platform>
+    <platform name="ios">
+        <podspec>
+            <config>
+                <source url="https://github.com/CocoaPods/Specs.git"/>
+            </config>
+            <pods>
+                <pod name="QBImagePickerController" version="3.4.0"/>
+            </pods>
+        </podspec>
+
+        <config-file parent="/*" target="config.xml">
+            <feature name="ScanbotExampleUi">
+                <param name="ios-package" value="ScanbotExampleUi" />
+            </feature>
+        </config-file>
+
+        <preference name="PHOTOLIBRARY_USAGE_DESCRIPTION" default="This app needs to access your photo library in order to import images" />
+        <config-file target="*-Info.plist" parent="NSPhotoLibraryUsageDescription">
+        <string>$PHOTOLIBRARY_USAGE_DESCRIPTION</string>
+        </config-file>
+
+        <source-file src="src/ios/ScanbotExampleUi.m" />
+
+    </platform>
+</plugin>

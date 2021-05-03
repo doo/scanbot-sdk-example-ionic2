@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="home"></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Accepted Documents
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-item style="display: block;" lines="none" class="ion-padding">
+        <ion-label>Enable Document Filters</ion-label>
+        <ion-toggle value="{{isFilteringEnabled}}" checked="{{isFilteringEnabled}}" (ionChange)="onEnabledChange($event)"></ion-toggle>
+    </ion-item>
+
+    <ion-item-divider>
+        <ion-label>Filters</ion-label>
+    </ion-item-divider>
+    <li *ngFor="let documentType of documentTypes" style="list-style: none; padding-bottom: 32px;" class="ion-padding">
+        <ion-item style="display: block;">
+            <ion-label>{{documentType.key}}</ion-label>
+            <ion-toggle value="{{documentType.key}}" disabled="{{!isFilteringEnabled}}" checked="{{documentType.value}}" (ionChange)="onChange($event)"></ion-toggle>
+        </ion-item>
+    </li>
+
+</ion-content>
+
+<ion-footer>
+
+</ion-footer>

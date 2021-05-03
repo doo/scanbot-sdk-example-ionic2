@@ -1,12 +1,19 @@
 import { Injectable } from '@angular/core';
 
+export interface BarcodesDetectionViewModel {
+    snappedImage?: string,
+    barcodes: {
+        text: string,
+        type: string
+    }[]
+}
+
 @Injectable({
     providedIn: 'root',
 })
 export class BarcodeListService {
 
-    public static detectedBarcodes = [];
-    public static snappedImage: string;
+    public static detectedBarcodes: BarcodesDetectionViewModel[] = [];
 
     public static items = [
         { key: 'AZTEC',        value: true },

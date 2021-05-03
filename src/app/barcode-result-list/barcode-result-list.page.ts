@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {BarcodeListService} from '../services/barcode-list.service';
+import {BarcodeListService, BarcodesDetectionViewModel} from '../services/barcode-list.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
@@ -9,14 +9,24 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class BarcodeResultListPage {
 
-  imageSourceUri: string;
-  barcodes = [];
+  detectedBarcodes: BarcodesDetectionViewModel[];
 
   constructor(public sanitizer: DomSanitizer) {
-    if (BarcodeListService.snappedImage) {
-      this.imageSourceUri = this.sanitizeFileUri(BarcodeListService.snappedImage);
-    }
-    this.barcodes = BarcodeListService.detectedBarcodes;
+    let detectedBarcodes = BarcodeListService.detectedBarcodes || [];
+    
+    console.log("This is how detected barcodes look like: " + JSON.stringify(detectedBarcodes, null, 4));
+
+    detectedBarcodes = detectedBarcodes.map((item) => {
+      if (item.snappedImage) {
+        item.snappedImage = this.sanitizeFileUri(item.snappedImage);
+      }
+
+      return item;
+    })
+
+    console.log("This is how they look like after sanitize: " + JSON.stringify(detectedBarcodes, null, 4));
+
+    this.detectedBarcodes = detectedBarcodes
   }
 
   private sanitizeFileUri(fileUri: string): string {

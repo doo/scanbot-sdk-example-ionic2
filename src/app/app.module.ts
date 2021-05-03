@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { DialogsService } from './services/dialogs.service';
 import { ScanbotSdkDemoService } from './services/scanbot-sdk-demo.service';
 import { ImageResultsRepository } from './services/image-results.repository';
+import { ScanbotExampleUIService } from './services/scanbot-example-ui.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,7 +29,8 @@ import { ImageResultsRepository } from './services/image-results.repository';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     DialogsService,
     ScanbotSdkDemoService,
-    ImageResultsRepository,
+    ScanbotExampleUIService,
+    ImageResultsRepository
   ],
   bootstrap: [AppComponent]
 })

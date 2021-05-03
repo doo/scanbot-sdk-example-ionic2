@@ -100,14 +100,6 @@ export class ImageResultsPage {
         if (!(await this.scanbotService.checkLicense())) { return; }
         if (!this.checkImages()) { return; }
 
-        if (ScanbotSdkDemoService.ENCRYPTION_ENABLED) {
-            // TODO encryption for TIFF files currently not supported
-            await this.dialogsService.showAlert(
-                'Encryption for TIFF files currently not supported. ' +
-                'In order to test TIFF please disable image file encryption.', 'INFO');
-            return;
-        }
-
         const loading = await this.dialogsService.createLoading('Creating TIFF ...');
         try {
             await loading.present();
