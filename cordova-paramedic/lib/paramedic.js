@@ -423,15 +423,30 @@ class ParamedicRunner {
             return Q(cmd.join(' '));
         }
 
-        var target = new ParamedicTargetChooser(this.tempFolder.name, this.config).chooseTarget(true, this.config.getTarget())
+        if (this.isIos) {
+            target = "iPhone-12, 14.4"
 
-        return cmd
-        .concat(['--target', `"${target.target}"`])
-        // CB-11472 In case of iOS provide additional '--emulator' flag, otherwise
-        // 'cordova run ios --target' would hang waiting for device with name
-        // as specified in 'target' in case if any device is physically connected
-        .concat(this.isIos ? ['--emulator'] : [])
-        .join(' ');
+            console.log("TARGET OBJECT EQUALS:", target)
+            return cmd
+            .concat(["--target", `"${target}"`])
+            .join(' ');
+        }
+
+        else {
+            var target = new ParamedicTargetChooser(this.tempFolder.name, this.config).chooseTarget(true, this.config.getTarget())
+            console.log("TARGET OBJECT EQUALS:", target.target)
+            return cmd
+            .concat(['--target', `"${target.target}"`])
+            // CB-11472 In case of iOS provide additional '--emulator' flag, otherwise
+            // 'cordova run ios --target' would hang waiting for device with name
+            // as specified in 'target' in case if any device is physically connected
+            // .concat(this.isIos ? ['--emulator'] : [])
+            .join(' ');
+        }
+
+
+
+
 
         // // For now we always trying to run test app on emulator
         // return (new ParamedicTargetChooser(this.tempFolder.name, this.config))

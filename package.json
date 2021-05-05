@@ -12,7 +12,7 @@
     "e2e": "ng e2e",
     "test:android": "cordova-paramedic --cleanUpAfterRun --verbose --platform android --plugin plugins/cordova-plugin-scanbot-sdk --target ZY227L6QBJ --shouldUseAndroidx true",
     "test:browser": "cordova-paramedic --cleanUpAfterRun --verbose --platform browser --plugin plugins/cordova-plugin-scanbot-sdk",
-    "test:ios": "cordova-paramedic --cleanUpAfterRun --verbose --platform ios --plugin plugins/cordova-plugin-scanbot-sdk"
+    "test:ios": "cordova-paramedic --verbose --platform ios --plugin plugins/cordova-plugin-scanbot-sdk"
   },
   "private": true,
   "dependencies": {
@@ -42,6 +42,7 @@
     "cordova-plugin-whitelist": "^1.3.3",
     "cordova-sqlite-storage": "^5.1.0",
     "core-js": "^2.5.4",
+    "ios-sim": "^9.0.0",
     "rxjs": "~6.3.3",
     "source-map": "^0.7.3",
     "zone.js": "~0.8.29"
@@ -93,9 +94,13 @@
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
       },
       "cordova-sqlite-storage": {},
-      "cordova-plugin-scanbot-sdk": {},
+      "cordova-plugin-scanbot-sdk": {
+        "CAMERA_USAGE_DESCRIPTION": " "
+      },
       "cordova-plugin-splashscreen": {},
-      "cordova-plugin-scanbot-example-ui": {}
+      "cordova-plugin-scanbot-example-ui": {
+        "PHOTOLIBRARY_USAGE_DESCRIPTION": "This app needs to access your photo library in order to import images"
+      }
     },
     "platforms": [
       "ios",
