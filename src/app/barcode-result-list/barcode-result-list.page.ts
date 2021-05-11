@@ -14,8 +14,6 @@ export class BarcodeResultListPage {
   constructor(public sanitizer: DomSanitizer) {
     let detectedBarcodes = BarcodeListService.detectedBarcodes || [];
     
-    console.log("This is how detected barcodes look like: " + JSON.stringify(detectedBarcodes, null, 4));
-
     detectedBarcodes = detectedBarcodes.map((item) => {
       if (item.snappedImage) {
         item.snappedImage = this.sanitizeFileUri(item.snappedImage);
@@ -23,8 +21,6 @@ export class BarcodeResultListPage {
 
       return item;
     })
-
-    console.log("This is how they look like after sanitize: " + JSON.stringify(detectedBarcodes, null, 4));
 
     this.detectedBarcodes = detectedBarcodes
   }
