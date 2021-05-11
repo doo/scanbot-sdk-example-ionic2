@@ -64,14 +64,14 @@ function getSimulatorsFolder () {
     return path.join(os.homedir(), 'Library', 'Developer', 'CoreSimulator', 'Devices');
 }
 
-function getSimulatorModelId (cli, target) {
+function getSimulatorModelId (cli, target, emulator) {
     target = new RegExp(target || '^iPhone');
-
-    const args = [
-        'run',
-        '--list',
-        '--emulator'
-    ].concat(module.exports.PARAMEDIC_COMMON_ARGS);
+    var args = ['run', '--list', '--emulator'];
+    if (emulator == false) {
+        args = ['run', '--list'];
+    }
+    
+    args.concat(module.exports.PARAMEDIC_COMMON_ARGS);
 
     // Fetches all known simulators/emulators.
     logger.info('running:');
@@ -84,7 +84,7 @@ function getSimulatorModelId (cli, target) {
         return;
     }
 
-    logger.info(`Avaliable Emulators:\n${result.stdout}`);
+    logger.info(`Available Emulators:\n${result.stdout}`);
     logger.info(`Filtering for Targeted Emulator: ${target}`);
 
     // Return the individual target that is filtered from the known simulators/emulators based on provided target name. (default: ^iPhone)
@@ -99,7 +99,8 @@ function getSimulatorCollection () {
     if (simulatorCollection) return simulatorCollection;
 
     // Next, figure out the ID of the simulator we found
-    const instrCommand = 'instruments -s devices | grep ^iPhone';
+    //const instrCommand = 'instruments -s devices | grep ^iPhone';
+    const instrCommand = "xcrun xctrace list devices" //"xcrun xctrace list devices | awk '{print $4}'"
     logger.info('running:');
     logger.info('    ' + instrCommand);
 

@@ -133,13 +133,21 @@ class ParamedicTargetChooser {
     chooseTargetForIOS (emulator, target) {
         logger.info('cordova-paramedic: Choosing Target for iOS');
 
-        const simulatorModelId = utilities.getSimulatorModelId(this.cli, target);
-        const simulatorData = utilities.getSimulatorData(simulatorModelId);
+        const simulatorModelId = utilities.getSimulatorModelId(this.cli, target, emulator);
 
-        return Q({
-            target: simulatorModelId,
-            simId: simulatorData.simId
-        });
+        if (emulator == true) {   
+            var target = simulatorModelId;
+            var simId = utilities.getSimulatorData(target).simId;
+        }
+        else {
+            target = simulatorModelId.replace(" iPhone", "");
+            target = [target.substring(0, 8), "-", target.slice(8)].join("");
+            simId = null;
+        }
+        return {
+            target: target,
+            simId: simId
+        };
     }
 }
 

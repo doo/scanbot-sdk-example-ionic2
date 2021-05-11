@@ -423,44 +423,24 @@ class ParamedicRunner {
             return Q(cmd.join(' '));
         }
 
-        if (this.isIos) {
-            target = "iPhone-12, 14.4"
+        else if (this.isIos) {
+            var emulator = false;
+            if (this.config.getTarget().indexOf("iPhone-") !==-1) {
+                emulator = true;
+            }
 
-            console.log("TARGET OBJECT EQUALS:", target)
+            var target = new ParamedicTargetChooser(this.tempFolder.name, this.config).chooseTarget(emulator, this.config.getTarget());
             return cmd
-            .concat(["--target", `"${target}"`])
+            .concat(["--target", `"${target.target}"`])
             .join(' ');
         }
 
         else {
-            var target = new ParamedicTargetChooser(this.tempFolder.name, this.config).chooseTarget(true, this.config.getTarget())
-            console.log("TARGET OBJECT EQUALS:", target.target)
+            target = new ParamedicTargetChooser(this.tempFolder.name, this.config).chooseTarget(true, this.config.getTarget())
             return cmd
             .concat(['--target', `"${target.target}"`])
-            // CB-11472 In case of iOS provide additional '--emulator' flag, otherwise
-            // 'cordova run ios --target' would hang waiting for device with name
-            // as specified in 'target' in case if any device is physically connected
-            // .concat(this.isIos ? ['--emulator'] : [])
             .join(' ');
         }
-
-
-
-
-
-        // // For now we always trying to run test app on emulator
-        // return (new ParamedicTargetChooser(this.tempFolder.name, this.config))
-        //     .chooseTarget(true, this.config.getTarget())
-        //     .then(targetObj => {
-        //         this.targetObj = targetObj;
-        //         return cmd
-        //             .concat(['--target', `"${this.targetObj.target}"`])
-        //             // CB-11472 In case of iOS provide additional '--emulator' flag, otherwise
-        //             // 'cordova run ios --target' would hang waiting for device with name
-        //             // as specified in 'target' in case if any device is physically connected
-        //             .concat(this.isIos ? ['--emulator'] : [])
-        //             .join(' ');
-        //    });
     }
 
     shouldWaitForTestResult () {
